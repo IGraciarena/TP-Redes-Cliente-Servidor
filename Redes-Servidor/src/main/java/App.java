@@ -7,9 +7,9 @@ public class App {
         ServerSocket servidor;
         servidor = new ServerSocket(3000);
         System.out.println("Servidor conectado");
-        while (true){
+        while (true) {
             Socket cliente;
-            cliente= servidor.accept();
+            cliente = servidor.accept();
             System.out.println("Cliente conectado :" + "desde IP" + cliente.getInetAddress() + " desde el puerto " + cliente.getPort());
             Servidor s = new Servidor(cliente);
             AtiendeEscritura hiloEscritor = new AtiendeEscritura(cliente);
@@ -19,7 +19,5 @@ public class App {
             tescritor.start();
             tlector.start();
         }
-
-
     }
 }

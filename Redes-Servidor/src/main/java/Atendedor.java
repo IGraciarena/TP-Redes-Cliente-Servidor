@@ -3,8 +3,6 @@ import java.net.Socket;
 
 public class Atendedor {
     protected Socket s;
-    protected InputStream IN;
-    protected OutputStream OUT;
     protected BufferedReader input;
     protected PrintWriter output;
 

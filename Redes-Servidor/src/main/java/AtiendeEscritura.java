@@ -17,7 +17,7 @@ public class AtiendeEscritura extends Atendedor implements Runnable {
             while (output != null && (!mensajeTX.equalsIgnoreCase("x"))) {
                 mensajeTX = tecla.nextLine();
                 output.println(mensajeTX);
-                System.out.println("Yo: " + mensajeTX);
+                System.out.println("Yo servidor: " + mensajeTX);
                 output.flush();
             }
             s.close();
