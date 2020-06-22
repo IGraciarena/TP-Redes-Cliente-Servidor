@@ -1,4 +1,4 @@
-# TP-Redes-Cliente-Servidor :sparkles:
+# TP-Redes-Cliente-Servidor
 
 ## Built With 🛠️
 
