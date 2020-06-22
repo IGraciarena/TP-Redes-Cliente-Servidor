@@ -20,7 +20,7 @@ public class AtiendeLectura extends Atendedor implements Runnable {
             } while (input != null && (!mensajeRX.equalsIgnoreCase("x")));
             s.close();
         } catch (SocketException e) {
-            e.printStackTrace();
+            System.out.println("Finalizado");
         } catch (IOException e) {
             e.printStackTrace();
         }

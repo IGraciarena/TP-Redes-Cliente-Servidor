@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class AtiendeLectura extends Atendedor implements Runnable {
 
@@ -18,6 +19,8 @@ public class AtiendeLectura extends Atendedor implements Runnable {
 
             } while (input != null && (!mensajeRX.equalsIgnoreCase("x")));
             s.close();
+        } catch (SocketException e){
+            System.out.println("Cliente desconectado");
         } catch (IOException e) {
             e.printStackTrace();
         }

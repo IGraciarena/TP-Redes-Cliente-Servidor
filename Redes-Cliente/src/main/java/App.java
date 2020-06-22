@@ -1,14 +1,11 @@
 import java.io.IOException;
-import java.net.ConnectException;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
 
-    public static void main(String[] args) throws UnknownHostException, IOException, IllegalArgumentException, InputMismatchException, ConnectException {
+    public static void main(String[] args) throws UnknownHostException, IOException, IllegalArgumentException, InputMismatchException, ConnectException, SocketException {
         try {
             checkConnection();
         } catch (UnknownHostException e) {
@@ -17,6 +14,8 @@ public class App {
         } catch (ConnectException e) {
             System.out.println("Error en la conexion");
             checkConnection();
+        } catch (SocketException e){
+            System.out.println("Finalizado");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IllegalArgumentException e) {
@@ -28,7 +27,7 @@ public class App {
         }
     }
 
-    protected static void checkConnection() throws IOException, UnknownHostException, IllegalArgumentException, InputMismatchException, ConnectException {
+    protected static void checkConnection() throws IOException, UnknownHostException, IllegalArgumentException, InputMismatchException, ConnectException, SocketException {
         Scanner opc = new Scanner(System.in);
         String ip;
         Integer puerto;
@@ -37,14 +36,14 @@ public class App {
         ip = opc.nextLine();
         System.out.println("Puerto: ");
         puerto = opc.nextInt();
-        Socket sConexionActual = new Socket(InetAddress.getByName(ip), puerto);
-        AtiendeEscritura hiloEscritor = new AtiendeEscritura(sConexionActual);
-        AtiendeLectura hiloLector = new AtiendeLectura(sConexionActual);
+        Socket cliente = new Socket(InetAddress.getByName(ip), puerto);
+        AtiendeEscritura hiloEscritor = new AtiendeEscritura(cliente);
+        AtiendeLectura hiloLector = new AtiendeLectura(cliente);
         Thread tescritor = new Thread(hiloEscritor);
         Thread tlector = new Thread(hiloLector);
         tescritor.start();
         tlector.start();
-        if (sConexionActual.isConnected()) {
+        if (cliente.isConnected()) {
             System.out.println("La conexion fue exitosa");
         }
     }
